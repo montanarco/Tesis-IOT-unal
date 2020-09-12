@@ -1,0 +1,39 @@
+http://www.dragino.com/downloads/downloads/LoRa_Gateway/LG01N/LG01N_LoRa_Gateway_User_Manual_v1.1.pdf
+
+1.) configurar y quema codigo Arduino uno (sx1278-GPS-HCSR04)
+2.) configurar y quema codigo Arduino- dragino (GPS-HCSR04)
+-----------------------------------
+3.) Cliente MQTT: iniciar cliente en un bean cuando se levanta la app del back-end
+4.) levantar la simulacion front
+-----------------------------------
+5.) codificar coordenadas GPS en arduino
+6.) decodificar coordenada GPS en TTN
+
+7.) mostrar graficamente los datos recolectados, app web usando api google maps
+8.) escribir en el documento el reporte de todo lo implementado hasta aqui
+
+-----------------------------------
+calcular rutas de recoleccion con la informacion simulada
+implementar app movil, para visualizar las rutas
+
+
+------------------------------------------------------
+//1. agregar las dependencias
+//2. crear la clase clienteMqtt
+//3. ejecutar el cliente() para que arranque con el proyecto spring boot
+//4. utilizar la misma logica de conexion a la base
+
+
+
+function Decoder(bytes, port) {
+  // Decode an uplink message from a buffer
+  // (array) of bytes to an object of fields.
+  var distance = ((bytes[0] << 8) | bytes[1])/10;
+
+  return {
+    distance: distance
+  }
+}
+
+
+https://medium.com/@fernandochristyanto/create-and-run-java-servlet-web-app-2-5-using-eclipse-and-apache-tomcat-87c546fa0aa5

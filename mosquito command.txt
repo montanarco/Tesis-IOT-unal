@@ -1,0 +1,13 @@
+
+mosquitto_sub -h <Region>.thethings.network -t "+/devices/+/events/activations" -u "<AppID>" -P "<AppKey>" -v
+
+
+mosquitto_sub -h us-west.thethings.network -t '01basurasbogota/devices/01nodo/events/activations' -u '01basurasbogota' -P 'ttn-account-v2.RmXvJu3XZ3e1S3B9cpFGwnBTBrCSVRniB_vMJEud3cA' -v --cafile mqtt-ca.pem -p 1883 -p 8883 
+
+mosquitto_sub -h <Region>.thethings.network -t '+/devices/+/up' -u '<AppID>' -P '<AppKey>' -v
+
+mosquitto_sub -h us-west.thethings.network -d -t '01basurasbogota/devices/01nodo/up' -u '01basurasbogota' -P 'ttn-account-v2.RmXvJu3XZ3e1S3B9cpFGwnBTBrCSVRniB_vMJEud3cA' -v --cafile mqtt-ca.pem -p 1883
+
+mvn clean compile exec:java -Dexec.mainClass="org.thethingsnetwork.samples.mqtt.App"
+
+C:\Users\Miguel\.m2\repository\org\thethingsnetwork\data-common\2.1.0\data-common-2.1.0.jar

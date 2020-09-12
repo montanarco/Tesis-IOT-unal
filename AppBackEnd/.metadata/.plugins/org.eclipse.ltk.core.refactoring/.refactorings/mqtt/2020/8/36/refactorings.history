@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;PostgreSQLConnection.java&apos; to &apos;apiGarbageSimulation/src/main/java/com.samples.mqtt&apos;&#x0D;&#x0A;- Original project: &apos;mqtt&apos;&#x0D;&#x0A;- Destination element: &apos;apiGarbageSimulation/src/main/java/com.samples.mqtt&apos;&#x0D;&#x0A;- Original element: &apos;jdbc.postgress.PostgreSQLConnection.java&apos;" description="Copy compilation unit" destination="=apiGarbageSimulation/src\/main\/java&lt;com.samples.mqtt" element1="/src\/main\/java&lt;jdbc.postgress{PostgreSQLConnection.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1598837124438" units="1" version="1.0"/>
+</session>

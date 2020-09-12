@@ -1,0 +1,12 @@
+127.0.0.1 - - [22/Aug/2020:00:33:11 -0500] "GET / HTTP/1.1" 404 687
+0:0:0:0:0:0:0:1 - - [22/Aug/2020:00:33:13 -0500] "GET /mqttBroker/ HTTP/1.1" 404 702
+0:0:0:0:0:0:0:1 - - [22/Aug/2020:00:33:32 -0500] "GET /ServletHelloWorld/HomeController HTTP/1.1" 404 723
+0:0:0:0:0:0:0:1 - - [22/Aug/2020:00:33:34 -0500] "GET /favicon.ico HTTP/1.1" 404 698
+127.0.0.1 - - [22/Aug/2020:19:22:53 -0500] "GET / HTTP/1.1" 404 687
+0:0:0:0:0:0:0:1 - - [22/Aug/2020:19:22:54 -0500] "GET /mqttBroker/ HTTP/1.1" 404 702
+0:0:0:0:0:0:0:1 - - [22/Aug/2020:19:23:03 -0500] "GET /ServletHelloWorld/HomeController HTTP/1.1" 404 723
+0:0:0:0:0:0:0:1 - - [22/Aug/2020:19:23:03 -0500] "GET /favicon.ico HTTP/1.1" 404 698
+0:0:0:0:0:0:0:1 - - [22/Aug/2020:19:24:05 -0500] "GET /ServletHelloWorld/HomeController HTTP/1.1" 404 723
+127.0.0.1 - - [22/Aug/2020:19:25:52 -0500] "GET / HTTP/1.1" 404 687
+0:0:0:0:0:0:0:1 - - [22/Aug/2020:19:25:52 -0500] "GET /mqttBroker/ HTTP/1.1" 404 702
+0:0:0:0:0:0:0:1 - - [22/Aug/2020:19:26:08 -0500] "GET /mqttBroker/HomeController HTTP/1.1" 200 142

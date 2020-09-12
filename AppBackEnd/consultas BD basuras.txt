@@ -1,0 +1,29 @@
+select * from daily_operation
+
+create database iot_garbagecollection
+
+SELECT table_schema,table_name 
+FROM information_schema.tables
+WHERE table_schema='public'
+ORDER BY table_schema,table_name;
+
+
+
+INSERT INTO public.dumpster
+(id, "location", id_dumpster_type, id_physical_state, idvia, device_id)
+VALUES(28253, 'POINT (-74.0892113 4.6296724)', 2, 1, 102470, '01nodo');
+
+
+
+
+select * from daily_operation;
+select * from dumpster where device_id = '01nodo';
+select * from dumpster_type;
+select * from measure_dumpter;
+select * from priority_type;
+select * from route;
+select * from truck;
+select * from physical_state_type;
+
+ALTER TABLE dumpster 
+ADD COLUMN device_id VARCHAR unique;

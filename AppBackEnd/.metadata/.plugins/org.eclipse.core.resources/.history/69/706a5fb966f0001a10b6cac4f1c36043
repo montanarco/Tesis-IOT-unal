@@ -1,0 +1,11 @@
+package broker.to;
+
+import com.vividsolutions.jts.geom.Geometry;
+
+public class Dumpster {
+
+	private Integer id;
+	private Geometry location;
+	private Integer idDumpsterType;
+
+}

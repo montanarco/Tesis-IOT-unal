@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1598056990317_2" label="app-sdk" name="app-sdk">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/data-amqp" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/management" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/data-common" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/account" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/app-sdk" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/data-mqtt" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/data" type="4"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1597710150619_0" label="Window Working Set" name="Aggregate for window 1597710150618"/>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1598052990445_1" label="Window Working Set" name="Aggregate for window 1598052990445"/>
+</workingSetManager>

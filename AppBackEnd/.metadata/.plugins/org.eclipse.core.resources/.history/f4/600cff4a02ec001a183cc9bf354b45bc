@@ -1,0 +1,27 @@
+package com.samples.beans;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.samples.mqtt.MQTTClient;
+
+@Component
+public class TestBeans implements InitializingBean {
+
+	private static final Logger logger = LogManager.getLogger(MQTTBeanInit.class);
+
+	@Autowired
+	private MQTTClient mqttClient;
+
+	
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+	//	logger.trace("se ejecuto el BEAN");
+	//	mqttClient.messageManagement();
+		
+	}
+}

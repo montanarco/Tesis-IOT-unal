@@ -1,0 +1,17 @@
+package broker.to;
+
+import javax.persistence.Column;
+
+import com.example.apiGarbageSimulation.helper.GeometryDeserializer;
+import com.example.apiGarbageSimulation.helper.GeometrySerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.vividsolutions.jts.geom.Geometry;
+
+public class Dumpster {
+
+	private Integer id;
+	private Geometry location;
+	private Integer idDumpsterType;
+
+}

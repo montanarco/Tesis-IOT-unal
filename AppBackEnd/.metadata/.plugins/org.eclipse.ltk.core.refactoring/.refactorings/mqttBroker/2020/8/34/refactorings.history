@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;mqttBroker/WebContent/WEB-INF/WEB.xml&apos; to &apos;web.xml&apos;" description="Rename resource &apos;WEB.xml&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="WebContent/WEB-INF/WEB.xml" name="web.xml" stamp="1598142134124" updateReferences="true"/>
+</session>

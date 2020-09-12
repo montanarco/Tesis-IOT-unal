@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;broker.to&apos; to &apos;broker.entities&apos;&#x0D;&#x0A;- Original project: &apos;mqtt&apos;&#x0D;&#x0A;- Original element: &apos;mqtt/src/main/java/broker.to&apos;&#x0D;&#x0A;- Renamed element: &apos;mqtt/src/main/java/broker.entities&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;broker.to&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src\/main\/java&lt;broker.to" name="broker.entities" qualified="false" references="true" stamp="1599417515708" textual="false" version="1.0"/>
+</session>

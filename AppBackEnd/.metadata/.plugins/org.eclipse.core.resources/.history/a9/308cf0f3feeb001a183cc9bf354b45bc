@@ -1,0 +1,26 @@
+package com.samples.beans;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import com.samples.mqtt.MQTTClient;
+
+@Configuration
+public class TestBeans {
+
+	private static final Logger logger = LogManager.getLogger(MQTTBeanInit.class);
+
+	@Autowired
+	private MQTTClient mqttClient;
+
+	@Bean
+	public void test() throws MqttException, Exception {
+		logger.trace("se ejecuto el BEAN");
+		mqttClient.messageManagement();
+
+	}
+}

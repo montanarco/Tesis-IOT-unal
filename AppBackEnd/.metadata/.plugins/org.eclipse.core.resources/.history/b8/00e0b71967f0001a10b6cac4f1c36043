@@ -1,0 +1,5 @@
+package broker.to;
+
+public class MeasureDumpster {
+
+}

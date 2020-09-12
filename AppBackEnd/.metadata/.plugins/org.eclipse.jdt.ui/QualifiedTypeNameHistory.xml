@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="java.sql.Statement"/>
+<fullyQualifiedTypeName name="jdbc.postgress.PostgreSQLConnection"/>
+<fullyQualifiedTypeName name="java.sql.ResultSetMetaData"/>
+<fullyQualifiedTypeName name="javassist.tools.Dump"/>
+<fullyQualifiedTypeName name="com.example.apiGarbageSimulation.entities.Dumpster"/>
+<fullyQualifiedTypeName name="com.example.apiGarbageSimulation.constants.simulationConstants"/>
+<fullyQualifiedTypeName name="com.example.apiGarbageSimulation.constants.SimulationConstants"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="com.example.apiGarbageSimulation.entities.MeasureDumpter"/>
+<fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
+<fullyQualifiedTypeName name="org.springframework.data.repository.query.Param"/>
+</qualifiedTypeNameHistroy>
