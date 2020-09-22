@@ -151,40 +151,39 @@ void do_send(osjob_t* j){
 
         digitalWrite(Ptrig, LOW);
         delayMicroseconds(2);
-        digitalWrite(Ptrig, HIGH);   // genera el pulso de triger por 10ms
+        digitalWrite(Ptrig, HIGH);   // generate signal emited by triger for 10ms
         delayMicroseconds(10);
         digitalWrite(Ptrig, LOW);
 
         duracion = pulseIn(Pecho, HIGH);
      
-        distancia = (duracion/2) / 29;            // calcula la distancia en centimetros
+        distancia = (duracion/2) / 29;            // measures distance based on signal delay splited 334 m/s sound speed
   
-        if (distancia >= 500 || distancia <= 0){  // si la distancia es mayor a 500cm o menor a 0cm 
-            Serial.println("---");                  // no mide nada
+        if (distancia >= 500 || distancia <= 0){  // if the distance if less than 0 or greater than 500 cm is not reliable value
+            Serial.println("---");                // showing sensor error
         }
         else {
-        Serial.print(distancia);           // envia el valor de la distancia por el puerto serial
-        Serial.println("cm");              // le coloca a la distancia los centimetros "cm"
-        digitalWrite(13, 0);               // en bajo el pin 13
+        Serial.print(distancia);           // loggin mesured distance value in serial monitor
+        Serial.println("cm");              // centimeters is being used as lenght unit
+        digitalWrite(13, 0);               // digital pin 13 is set to rest
         digitalWrite(4, 1); 
 
-        
         uint32_t distance=distancia * 10;
 
         Serial.println("distance: " + String(distance));
-        byte disLow = lowByte(distance);
-        byte disHigh = highByte(distance);
+        byte disLow = lowByte(distance);  // shifting the valeus to encode distance y bite array
+        byte disHigh = highByte(distance);//
 
         byte payload[2];
         payload[0] = highByte(distance); 
         payload[1] = lowByte(distance);
         
-        LMIC_setTxData2(1, payload, sizeof(payload), 0);
+        LMIC_setTxData2(1, payload, sizeof(payload), 0); // sending data using tranmision method defined in LMIC
         //LMIC_setTxData2(1, mydata, sizeof(mydata)-1, 0);
         
         Serial.println(F("Packet queued"));
         }
-    }
+  }
     delay(3000); 
     // Next TX is scheduled after TX_COMPLETE event.
 }
