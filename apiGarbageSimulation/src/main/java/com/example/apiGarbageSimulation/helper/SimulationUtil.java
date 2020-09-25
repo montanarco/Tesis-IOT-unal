@@ -16,7 +16,7 @@ public class SimulationUtil {
 		for (int x=0;x<level.length;x++) {			
 			//rand.nextGaussian() * 63 + 5 generacion de un numero aleatorio 
 			//con distribucion gaussiana de media 63y desviacion standart 5
-				level [x]=filled?(int) Math.abs(Math.round(rand.nextGaussian() * 5 + 63)):0;
+				level [x]=filled?(int) Math.abs(Math.round(rand.nextGaussian() * 37 + 63)):0;
 		}
 		return level;
 	}

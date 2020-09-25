@@ -84,7 +84,7 @@ public class DailyOperationService implements IDailyOperationService {
                 strVolume = dumpP1 = dumpP2 = dumpP3 = dumpP4 = 0;
             }
             strVolume = +md.getLevel();
-            switch (md.getPriority().getPriorityDescription()) {
+            switch (md.getPriority().getPriorityName()) {
                 case "Full":
                     dumpP1++;
                     break;

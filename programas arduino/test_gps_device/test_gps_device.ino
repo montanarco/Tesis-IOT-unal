@@ -2,10 +2,10 @@
 #include <TinyGPS.h>//incluimos TinyGPS
 
 // defines pins numbers
-const int trigPin = 6;
-const int echoPin = 7;
-const int RX = 3;
-const int TX = 4;
+const int trigPin = 7;
+const int echoPin = 6;
+const int RX = 10;
+const int TX = 11;
 
 // defines variables
 long duration;
@@ -13,7 +13,7 @@ int distance;
 
 // defines library elements
 TinyGPS gps;//Declaramos el objeto gps
-SoftwareSerial serialgps(TX,RX);//Declaramos el pin 4 Tx y 3 Rx
+SoftwareSerial serialgps(TX,RX);//Declaramos el pin 11 Tx y 10 Rx
 
 //Declaramos la variables para la obtención de datos
 int year;

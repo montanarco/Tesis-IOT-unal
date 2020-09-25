@@ -6,6 +6,7 @@ import { Type, Location } from "./Type";
         idDumpsterType: number;
         idPhysicalState: number;
         idvia: number;
+        deviceID: string;
     }
     
     export interface Priority {

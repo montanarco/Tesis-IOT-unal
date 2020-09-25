@@ -1,17 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { } from 'googlemaps';
 import { ContainerService } from 'src/app/services/container-service.service';
 import { IDumpsterMeasure, Priority } from 'src/app/models/IDumpsterMeasure';
+import {ProgressBarModule} from 'primeng/progressbar';
 
 @Component({
   selector: 'app-measures',
   templateUrl: './measures.component.html',
   styleUrls: ['./measures.component.css']
 })
-export class MeasuresComponent implements OnInit {
+export class MeasuresComponent implements OnInit, AfterViewInit { 
 
   containersLst: IDumpsterMeasure[];
   markers: google.maps.Marker[] = [];
+  markerEvents: google.maps.event[]= [];
   arrStreetPath = [];
   features: any[];
   iconBase = './assets/images/1x/';
@@ -43,14 +45,17 @@ export class MeasuresComponent implements OnInit {
 
   ngOnInit(): void {
     const mapProperties = {
-      center: new google.maps.LatLng(4.628721,-74.0935991),
-      zoom: 16.5 ,
+      center: new google.maps.LatLng(4.6365876,-74.0869373),
+      zoom: 15.5 ,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     setTimeout(() => {
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
     }, 1000);
-    this.drawContainers();
+  }
+
+  ngAfterViewInit(){
+    google.maps.event.addDomListener(window, 'load', this.drawContainers);
   }
 
   drawContainers() {
@@ -81,8 +86,26 @@ export class MeasuresComponent implements OnInit {
         map: this.map
       });
       this.markers.push(marker);
+
+      var contentString = '<p><strong>'+ this.features[i].label +'</strong></p>' +
+      '<p><em>Date: </em>' + this.features[i].date + '</p>' +
+      '<p><em>Level: </em> '+ this.features[i].levelDescription +'</p>'+
+      '<div class="w3-light-grey"> <div class="w3-container w3-green w3-center" style="width:'+ this.features[i].level +'%">'+ this.features[i].level +'%</div> </div><br>';
+      this.addInfoWindow(marker, contentString);
+      // this.markerEvents.push(mapEvent);
     };
   }
+
+  addInfoWindow(marker, message) {
+
+    var infoWindow = new google.maps.InfoWindow({
+        content: message
+    });
+
+    google.maps.event.addListener(marker, 'click', function () {
+        infoWindow.open(this.map, marker);
+    });
+}
 
   generateConfigMap() {
     this.features = [];
@@ -90,7 +113,11 @@ export class MeasuresComponent implements OnInit {
       const point = container.idDumpster.location.coordinates;
       this.features.push({
         position: new google.maps.LatLng(parseFloat(point[1] + ''), parseFloat(point[0] + '')),
-        type: this.priorityIcon(container.priority)
+        type: this.priorityIcon(container.priority),
+        label: container.idDumpster.deviceID,
+        date: container.measureDate,
+        levelDescription: container.priority.priorityName,
+        level: container.level
       });
     }
 
@@ -111,6 +138,6 @@ priorityIcon(priority: Priority) {
     default:
       return this.icons.whiteDumpster;
   }
-
 }
+
 }
