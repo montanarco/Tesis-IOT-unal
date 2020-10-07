@@ -2,13 +2,15 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="generateLevelesDate" key="selection"/>
+		<item value="connected" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
 			<item value="generateLevelesDate"/>
+			<item value="connected"/>
+			<item value="conne"/>
 			<item value="computePriority"/>
 			<item value="onMessage"/>
 			<item value="tomcat"/>

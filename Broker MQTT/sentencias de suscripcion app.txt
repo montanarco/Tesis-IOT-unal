@@ -1,0 +1,3 @@
+mosquitto_sub -h us-west.thethings.network -t "+/devices/+/events/activations" -u "01basurasbogota" -P "ttn-account-v2.RmXvJu3XZ3e1S3B9cpFGwnBTBrCSVRniB_vMJEud3cA" -v --cafile mqtt-ca.pem -p 8883
+
+mosquitto_sub -h us-west.thethings.network -t "+/devices/+/up" -u "01basurasbogota" -P "ttn-account-v2.RmXvJu3XZ3e1S3B9cpFGwnBTBrCSVRniB_vMJEud3cA" -v --cafile mqtt-ca.pem -p 8883
