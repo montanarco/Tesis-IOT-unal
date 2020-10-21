@@ -176,7 +176,7 @@ void do_send(osjob_t* j){
        
           if(gps.encode(c))  
           {
-            float latitude, longitude;
+            latitude, longitude;
             gps.f_get_position(&latitude, &longitude);
             Serial.print("Latitud: "); 
             Serial.print(latitude,5); 
@@ -185,16 +185,16 @@ void do_send(osjob_t* j){
             Serial.println(longitude,5);
             Serial.println("Dato Obtenido por Neo 6M");
 
-            int32_t lat = latitude * 100000;
+            int32_t lati = latitude * 100000;
             int32_t lon = longitude * 100000;
     
-            Serial.println("Latitud/Longitud: " + String(lat)+" , " + String(lon));
+            Serial.println("Latitud/Longitud: " + String(lati)+" , " + String(lon));
     
             byte payload[8];
     
-            payload[0] = lat;
-            payload[1] = lat >> 8;
-            payload[2] = lat >> 16;
+            payload[0] = lati;
+            payload[1] = lati >> 8;
+            payload[2] = lati >> 16;
             
             payload[3] = lon;
             payload[4] = lon >> 8;
@@ -244,5 +244,6 @@ void setup() {
 }
 
 void loop() {
+  
     os_runloop_once();
 }
