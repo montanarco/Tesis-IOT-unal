@@ -73,7 +73,15 @@ public class KmeansStart {
             pendienteOptima = pendienteAux;
         }
         System.out.println("pendiente optimia->" + pendienteOptima.getK() + "->\t" + pendienteOptima.getPendiente());
-        return resultados.get(pendienteOptima.getK());
+        //return resultados.get(pendienteOptima.getK());  // obtencion de los resultados que maximizan la funcion segun analisis de codo
+        return kmeans.calcular(puntos, truckNumber);
+    }
+    
+    public static KMeansResultado getSimpleClouster(List<DailyOperation> operations, int truckNumber) {
+    	 List<Punto> puntos = operations.stream().map(i -> new Punto(i)).collect(Collectors.toList());
+         KMeans kmeans = new KMeans();
+    	 return kmeans.calcular(puntos, truckNumber);
+    	
     }
 
 }

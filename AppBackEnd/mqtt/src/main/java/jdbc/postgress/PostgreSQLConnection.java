@@ -1,13 +1,19 @@
 package jdbc.postgress;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.postgis.Geometry;
+import org.postgis.PGgeometry;
+
+import com.vividsolutions.jts.geom.GeometryFactory;
+import com.vividsolutions.jts.geom.Point;
+
+import broker.entities.DeviceLocation;
 import broker.entities.Dumpster;
 import broker.entities.MeasureDumpster;
 
@@ -100,5 +106,44 @@ public class PostgreSQLConnection {
 		    }
 			return 0;
 	}
+	
+	public long saveDeviceLocation(DeviceLocation devLocation ) throws ClassNotFoundException, SQLException {
+		PreparedStatement statement2;
+	    try {
+	        statement2 =con.prepareStatement("INSERT INTO public.device_location (\"location\", moment_date, full_level, device_id) VALUES(?, ?, ?, ?)");
+
+	        //PGpoint point = new PGpoint(devLocation.getLocation().getCoordinate().x,devLocation.getLocation().getCoordinate().y);
+	        GeometryFactory geoFact = new GeometryFactory();
+	        Point point= geoFact.createPoint(devLocation.getLocation().getCoordinate());
+	        PGgeometry geom = new PGgeometry(point.toString());
+	        statement2.setObject(1,geom);  //Spatial Reference System Identifier SRID:  3116 - magna-sirgas / colombia bogota zone 
+	        java.sql.Timestamp sqlDate = new java.sql.Timestamp( new java.util.Date().getTime());
+	        statement2.setTimestamp(2, sqlDate);
+	        statement2.setInt(3, devLocation.getFull_level());
+	        statement2.setString(4, devLocation.getDevice_id());
+	        int affectedRows = statement2.executeUpdate();
+            // check the affected rows 
+            if (affectedRows > 0) {
+                // get the ID back
+                try (ResultSet rs = statement2.getGeneratedKeys()) {
+                    if (rs.next()) {
+                    	System.out.println("inserted id: "+ rs.getLong(1));
+                        return rs.getLong(1);
+                    }
+                } catch (SQLException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }
+	    }catch(SQLException e ){
+	    	e.printStackTrace();
+	    }
+		return 0;
+	}
+	
+	public PGgeometry convertObjectValueToDataValue(Object objectValue) {
+        if ((null == objectValue) || (!(objectValue instanceof org.postgis.Geometry)))
+            return null;
+        return new org.postgis.PGgeometry((org.postgis.Geometry)objectValue);
+    }
 
 }

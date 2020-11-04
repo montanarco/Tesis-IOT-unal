@@ -1,9 +1,10 @@
 package com.example.apiGarbageSimulation.services;
 
-import com.example.apiGarbageSimulation.Kmeans.KMeansResultado;
 import java.util.Date;
 import java.util.List;
 
+import com.apigarbagecollection.routing.RoutingReq;
+import com.example.apiGarbageSimulation.Kmeans.KMeansResultado;
 import com.example.apiGarbageSimulation.entities.DailyOperation;
 
 public interface IDailyOperationService {

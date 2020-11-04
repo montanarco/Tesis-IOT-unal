@@ -1,0 +1,61 @@
+package com.example.apiGarbageSimulation.services.impl;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.stereotype.Service;
+
+import com.apigarbagecollection.routing.Job;
+import com.apigarbagecollection.routing.RoutingReq;
+import com.apigarbagecollection.routing.Vehicle;
+import com.example.apiGarbageSimulation.Kmeans.Cluster;
+import com.example.apiGarbageSimulation.Kmeans.KMeansResultado;
+import com.example.apiGarbageSimulation.Kmeans.Punto;
+import com.example.apiGarbageSimulation.services.IDailyOperationService;
+import com.example.apiGarbageSimulation.services.IRoutingService;
+
+@Service
+@Configurable
+public class RoutingService implements IRoutingService {
+	
+	@Autowired
+	IDailyOperationService operationService;
+
+	public RoutingReq generateContainersVehicles(Date date) {
+		KMeansResultado KMresult = operationService.clusterize(date); 
+		List<Job> lstJobs = new ArrayList<Job>();
+		int contTareas = 0;
+		List<Vehicle> lstVehicles = new ArrayList<Vehicle>();
+		int contVehiculos = 0;
+		for(Cluster cluster : KMresult.getClusters()) {
+			for (Punto punto: cluster.getPuntos()) {
+				contTareas++;
+				Job tarea = new Job();
+				tarea.setId(contTareas);
+				tarea.setService(300);
+				Integer[] amount = new Integer[1];
+				amount[0] = new Integer(1);
+				tarea.setAmount(amount);
+				Float[] location = new Float[2];
+				location[0] = punto.getY();
+				location[1] = punto.getX();
+				tarea.setLocation(location);
+
+				lstJobs.add(tarea);
+			}
+			contVehiculos ++;
+			Vehicle camion = new Vehicle();
+			
+			lstVehicles.add(camion);
+		}
+		
+		RoutingReq routing = new RoutingReq();
+		routing.setLstJob(lstJobs);
+		routing.setLstVehicle(lstVehicles);
+		return routing;
+	}
+
+}

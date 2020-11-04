@@ -1,0 +1,5 @@
+package com.example.apiGarbageSimulation.entities;
+
+public class Sumary {
+
+}

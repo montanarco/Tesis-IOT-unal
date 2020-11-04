@@ -20,7 +20,7 @@ export class SimulationComponent implements OnInit {
   kmeanResult: IKmeansResult;
   valueFecha: Date;
   arrStreetPath = [];
-  arrColours = ['#FF0000', '#FF8000', '#FFFF00', '#80FF00', '#00FF00', '#00FFBF', '#0080FF', '#0000FF', '#BF00FF', '#FF00BF', '#FE2E64'];
+  arrColours = ['#D98880', '#F5B7B1', '#C39BD3', '#BB8FCE', '##7FB3D5', '#85C1E9', '#76D7C4', '#73C6B6', '#7DCEA0', '#82E0AA', '#F7DC6F', '##F8C471', '#F0B27A', '#E59866', '#D7DBDD', '#85929E', '#1C2833', '#B3B6B7', '#A04000', '#AF601A', '#B9770E', '#B7950B', '#239B56', '#1E8449', '#117A65', '##148F77', '#2874A6', '#1F618D', '#6C3483', '#76448A', '#B03A2E', '#922B21'];
 
   @ViewChild('map') private mapElement: any;
 

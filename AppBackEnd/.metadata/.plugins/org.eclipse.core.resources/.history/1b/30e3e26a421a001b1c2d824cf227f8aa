@@ -1,0 +1,23 @@
+package com.apigarbagecollection.routing;
+
+import java.util.List;
+
+public class RoutingReq {
+	
+	List<Job> jobs;
+	List<Vehicle> vehicles;
+	
+	public List<Job> getLstJob() {
+		return jobs;
+	}
+	public void setLstJob(List<Job> lstJob) {
+		this.jobs = lstJob;
+	}
+	public List<Vehicle> getLstVehicle() {
+		return vehicles;
+	}
+	public void setLstVehicle(List<Vehicle> lstVehicle) {
+		this.vehicles = lstVehicle;
+	}
+
+}

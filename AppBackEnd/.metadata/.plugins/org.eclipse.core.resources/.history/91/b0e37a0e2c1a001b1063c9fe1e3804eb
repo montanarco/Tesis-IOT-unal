@@ -1,0 +1,30 @@
+package com.example.apiGarbageSimulation.services.impl;
+
+import java.util.Date;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.stereotype.Service;
+
+import com.apigarbagecollection.routing.RoutingReq;
+import com.example.apiGarbageSimulation.services.IDailyOperationService;
+import com.example.apiGarbageSimulation.services.IRoutingService;
+import com.example.apiGarbageSimulation.Kmeans.KMeansResultado;
+
+@Service
+@Configurable
+public class RoutingService implements IRoutingService {
+	
+	@Autowired
+	IDailyOperationService operationService;
+
+	public RoutingReq generateContainersVehicles(Date date) {
+		KMeansResultado KMresult = operationService.clusterize(date); 
+		// generar una consulta soble los contenedores que superan el nivel definido y crear un job 
+		//	para cada uno
+		
+		// llamar la funcion de clusterizacion y generar un vehiculos por cada cluster generado
+		return null;
+	}
+
+}

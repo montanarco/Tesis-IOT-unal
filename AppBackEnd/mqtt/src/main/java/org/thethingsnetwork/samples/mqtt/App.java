@@ -3,6 +3,7 @@ package org.thethingsnetwork.samples.mqtt;
 
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.LinkedHashMap;
 
 /*
  * The MIT License
@@ -36,6 +37,10 @@ import org.thethingsnetwork.data.common.messages.RawMessage;
 import org.thethingsnetwork.data.common.messages.UplinkMessage;
 import org.thethingsnetwork.data.mqtt.Client;
 
+import com.vividsolutions.jts.geom.Coordinate;
+import com.vividsolutions.jts.geom.GeometryFactory;
+
+import broker.entities.DeviceLocation;
 import broker.entities.Dumpster;
 import broker.entities.MeasureDumpster;
 import broker.utilities.utilities;
@@ -101,6 +106,9 @@ public class App {
 		Object location = (Object) ((UplinkMessage) data).getPayloadFields().get("location");
 	
 		System.out.println("location: "+ location.toString());
+		LinkedHashMap mapLocation =  (LinkedHashMap) location;
+		Double douLatitude =  (Double) mapLocation.get("lat");;
+		Double douLongitude =  (Double) mapLocation.get("lng");
 		PostgreSQLConnection dao;
 		try {
 			dao = new PostgreSQLConnection();
@@ -110,6 +118,7 @@ public class App {
 			int idDumpsterMeasure = dao.findLastID();
 			idDumpsterMeasure ++;
 			if (dumpster!=null) {
+				//processing de maesure
 				measureDump = new MeasureDumpster();
 				measureDump.setId(idDumpsterMeasure);
 				measureDump.setIdDumpster(dumpster.getId());
@@ -118,7 +127,18 @@ public class App {
 				measureDump.setMeasureDate(new Date());
 				measureDump.computePriority();
 				dao.saveMeasureDumpster(measureDump);
+				
+				//posesiong the location
+				DeviceLocation deviceLocation = new DeviceLocation();
+				deviceLocation.setDevice_id(devId);
+				deviceLocation.setFull_level(level);
+				GeometryFactory geomFactory = new GeometryFactory();
+				Coordinate coordinate = new Coordinate(douLatitude, douLongitude);
+				com.vividsolutions.jts.geom.Point point = geomFactory.createPoint(coordinate);
+				deviceLocation.setLocation(point);
+				dao.saveDeviceLocation(deviceLocation);
 			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

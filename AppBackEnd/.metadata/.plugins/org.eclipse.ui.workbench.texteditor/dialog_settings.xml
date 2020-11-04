@@ -2,21 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="connected" key="selection"/>
+		<item value="cluster" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="CLUSTER"/>
+			<item value="generateLevels"/>
+			<item value="CLUST"/>
+			<item value="CREATE"/>
+			<item value="cluster"/>
 			<item value="generateLevelesDate"/>
+			<item value="createDailyOperation"/>
+			<item value="clusterize"/>
+			<item value="Geometry"/>
+			<item value="createPoint"/>
+			<item value="spatial"/>
+			<item value="jooq-postgis-spatial"/>
+			<item value="geomet"/>
+			<item value="geometr"/>
 			<item value="connected"/>
-			<item value="conne"/>
-			<item value="computePriority"/>
-			<item value="onMessage"/>
-			<item value="tomcat"/>
-			<item value="packag"/>
-			<item value="packaging"/>
-			<item value="appId"/>
 		</list>
 		<list key="replacehistory">
 		</list>

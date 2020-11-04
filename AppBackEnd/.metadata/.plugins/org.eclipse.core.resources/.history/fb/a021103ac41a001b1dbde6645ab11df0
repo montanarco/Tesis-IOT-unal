@@ -1,0 +1,6 @@
+package com.example.apiGarbageSimulation.entities;
+
+public class Unassigned {
+	private Integer id;
+	private Float [] location;
+}

@@ -1,5 +1,6 @@
 package com.example.apiGarbageSimulation.Kmeans;
 
+import com.example.apiGarbageSimulation.constants.SimulationConstants;
 import com.example.apiGarbageSimulation.entities.DailyOperation;
 import com.example.apiGarbageSimulation.entities.Via;
 import com.example.apiGarbageSimulation.helper.PointHelper;
@@ -11,11 +12,13 @@ public class Punto {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Float[] data;
     Via via;
+    private Integer volume;
 
     public Punto(DailyOperation operation) {
         super();
         this.data = PointHelper.pointFloat((Point) operation.getVia().getLocation());
         this.via = operation.getVia();
+        this.volume = operation.getVolume();
     }
 
     public Punto(Float[] data) {
@@ -91,5 +94,15 @@ public class Punto {
     public void setVia(Via via) {
         this.via = via;
     }
+
+	public Integer getVolume() {
+		return volume;
+	}
+
+	public void setVolume(Integer volume) {
+		this.volume = volume;
+	}
+    
+    
 
 }
