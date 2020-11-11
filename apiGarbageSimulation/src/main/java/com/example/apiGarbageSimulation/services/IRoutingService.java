@@ -2,10 +2,10 @@ package com.example.apiGarbageSimulation.services;
 
 import java.util.Date;
 
-import com.apigarbagecollection.routing.RoutingReq;
+import com.example.apiGarbageSimulation.entities.RoutingResponse;
 
 public interface IRoutingService {
 	
-	RoutingReq generateContainersVehicles(Date date);
+	void RouteVehicles (Date date);
 
 }

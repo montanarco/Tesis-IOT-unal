@@ -105,6 +105,7 @@ import { LoadingComponent } from './Views/loading/loading.component';
 import { HomeComponent } from './Views/Pages/home/home.component';
 import { SimulationComponent } from './Views/simulation/simulation.component';
 import { MeasuresComponent } from './Views/measures/measures.component';
+import { TestingComponent } from './Views/testing/testing.component';
 
 const RxJS_Services = [HTTPListener, HTTPStatus];
 @NgModule({
@@ -205,7 +206,8 @@ const RxJS_Services = [HTTPListener, HTTPStatus];
         LoadingComponent,
         LoadingComponent,
         HomeComponent,
-        MeasuresComponent
+        MeasuresComponent,
+        TestingComponent
     ],
     exports: [LazyForDirective],
     providers: [

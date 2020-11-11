@@ -54,9 +54,7 @@ void os_getDevEui (u1_t* buf) { memcpy_P(buf, DEVEUI, 8);}
 static const u1_t PROGMEM APPKEY[16] = { 0xEF, 0x1E, 0x7A, 0xDE, 0xBA, 0xF3, 0xB7, 0x20, 0x87, 0x9C, 0xD3, 0x2C, 0x64, 0xC6, 0xE2, 0xAB };//msb
 void os_getDevKey (u1_t* buf) {  memcpy_P(buf, APPKEY, 16);}
 
-
-//static uint8_t mydata[] = "que se dice Roita?";
-static uint8_t payload[2];
+static byte payload[8];
 static osjob_t sendjob;
 
 // Schedule TX every this many seconds (might become longer due to duty
@@ -64,23 +62,27 @@ static osjob_t sendjob;
 const unsigned TX_INTERVAL = 60;
 
 //these variables are used for GPS tracking
-const int RX = 40;
-const int TX = 41;
-// defines library elements
-TinyGPS gps;//GPS object is declared
-SoftwareSerial serialgps(TX,RX);//Declaramos el pin 41 Tx y 40 Rx
+const int RX = 11;
+const int TX = 12;
 
 //these variables are used with the proximity sensor
-long duracion, distancia;   
-int Ptrig, Pecho, respEcho;
+long duration;   
+int distance;
 
 //these variables are used for GPS tracking
 float latitude, longitude;
-int32_t lat, lon;
+
+
+///GPS 2 variables
 int year;
+int contador;
 byte month, day, hour, minute, second, hundredths;
 unsigned long chars;
 unsigned short sentences, failed_checksum;
+
+// defines library elements
+TinyGPS gps;//Declaramos el objeto gps
+SoftwareSerial serialgps(TX,RX);//Declaramos el pin 11 Tx y 10 Rx
 
 // Pin mapping
 const lmic_pinmap lmic_pins = {
@@ -162,96 +164,35 @@ void onEvent (ev_t ev) {
 
 void do_send(osjob_t* j){
     // Check if there is not a current TX/RX job running
-    if (LMIC.opmode & OP_TXRXPEND) {
+     if (LMIC.opmode & OP_TXRXPEND) {
         Serial.println(F("OP_TXRXPEND, not sending"));
-    } else {
-      // Prepare upstream data transmission at the next possible time.
-      latitude = 4.638793;
-      longitude = -74.075644;
-      
-      while(serialgps.available()) 
-      {
-        int c = serialgps.read();
-        if(gps.encode(c))  
-        {
-          // processing satellital Data
-          Serial.println(F("receiving GPS, coordinates"));
-          gps.f_get_position(&latitude, &longitude);
-          Serial.print("Latitud/Longitud: "); 
-          Serial.print(latitude,5); 
-          Serial.print(", "); 
-          Serial.println(longitude,5);
-          Serial.println("Latitud/Longitud: " + String(latitude)+" , " + String(longitude));
-        } // end if
-        else {
-          Serial.println(F("GPS, signal no available"));
-        }
-          
-      } // end while
-      
-      lat = latitude * 100000;
-      lon = longitude * 100000;
-      Serial.println("Latitud/Longitud: " + String(lat)+" , " + String(lon));
-
-          digitalWrite(Ptrig, LOW);
-          delayMicroseconds(2);
-          digitalWrite(Ptrig, HIGH);   // genera el pulso de triger por 10ms
-          delayMicroseconds(10);
-          digitalWrite(Ptrig, LOW);
-  
-          duracion = pulseIn(Pecho, HIGH);
+    } else {   
+       distance =  50;
+       uint32_t distancia= distance * 10;
        
-          distancia = (duracion/2) / 29;            // calcula la distancia en centimetros
-    
-          if (distancia >= 500 || distancia <= 0){  // si la distancia es mayor a 500cm o menor a 0cm 
-              Serial.println("---");                  // no mide nada
-          }
-          else {
-          Serial.print(distancia);           // envia el valor de la distancia por el puerto serial
-          Serial.println("cm");              // le coloca a la distancia los centimetros "cm"
-          digitalWrite(13, 0);               // en bajo el pin 13
-          digitalWrite(4, 1); 
-  
-          
-          uint32_t distance=distancia * 10;
-  
-          Serial.println("distance: " + String(distance));
-  
-          byte payload[8];
-  
-          payload[0] = lat;
-          payload[1] = lat >> 8;
-          payload[2] = lat >> 16;
-          
-          payload[3] = lon;
-          payload[4] = lon >> 8;
-          payload[5] = lon >> 16;
-          
-          payload[6] = highByte(distance); 
-          payload[7] = lowByte(distance);
-
-          Serial.println(F("trying to send package"));
-          
-          LMIC_setTxData2(1, payload, sizeof(payload), 0);
-          //LMIC_setTxData2(1, mydata, sizeof(mydata)-1, 0);
-          
-          Serial.println(F("Packet queued"));
-          }
-    } //end else
-    delay(3000);
+       Serial.println("distance: " + String(distancia));
+       payload[6] = highByte(distancia); 
+       payload[7] = lowByte(distancia);
+       
+       LMIC_setTxData2(1, payload, sizeof(payload), 0);
+       //LMIC_setTxData2(1, mydata, sizeof(mydata)-1, 0);
+            
+       Serial.println(F("Packet queued"));        
+    }
+    delay(3000); 
     // Next TX is scheduled after TX_COMPLETE event.
 }
 
 void setup() {
-    Pecho = 30;           
-    Ptrig = 31;
-    Serial.begin(115200);      // inicializa el puerto seria a 9600 baudios
-    serialgps.begin(9600);   //Iniciamos el puerto serie del gps
-    pinMode(Pecho, INPUT);     // define el pin 6 como entrada (echo)
-    pinMode(Ptrig, OUTPUT);    // define el pin 7 como salida  (triger)
-    pinMode(13, 1);            // Define el pin 13 como salida
-    pinMode(4, 1);
+    //pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
+    //pinMode(echoPin, INPUT); // Sets the echoPin as an Input
+    
+    Serial.begin(115200);
+    serialgps.begin(9600);//Iniciamos el puerto serie del gps
     Serial.println(F("Starting"));
+
+    //pinMode(13, 1);            // Define el pin 13 como salida
+    //pinMode(4, 1);
 
     #ifdef VCC_ENABLE
     // For Pinoccio Scout boards
@@ -270,5 +211,35 @@ void setup() {
 }
 
 void loop() {
-    os_runloop_once();
+  os_runloop_once();
+    while(serialgps.available()) 
+        {
+          int c = serialgps.read();
+       
+          if(gps.encode(c))  
+          {
+            latitude, longitude;
+            gps.f_get_position(&latitude, &longitude);
+            Serial.print("Latitud: "); 
+            Serial.print(latitude,5); 
+            Serial.print(", "); 
+            Serial.print("Longitud: "); 
+            Serial.println(longitude,5);
+            Serial.println("Dato Obtenido por Neo 6M");
+
+            int32_t lati = latitude * 100000;
+            int32_t lon = longitude * 100000;
+    
+            Serial.println("Latitud/Longitud: " + String(lati)+" , " + String(lon));   
+            payload[0] = lati;
+            payload[1] = lati >> 8;
+            payload[2] = lati >> 16;
+            
+            payload[3] = lon;
+            payload[4] = lon >> 8;
+            payload[5] = lon >> 16;
+            delay (5000);
+            
+           }
+       }
 }

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Alcance LoRa</title>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAn9ddhN7ZuvAGhxKCn-3qeQogWEGK6woE&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 650px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+      }
+    </style>
+    <script>
+	// If you're adding a number of markers, you may want to drop them on the map
+// consecutively rather than all at once. This example shows how to use
+// window.setTimeout() to space your markers' animation.
+const neighborhoods = [
+  { lat: 4.63393, lng: -74.08938 },
+  { lat: 4.63397, lng: -74.08948 },
+  { lat: 4.63391, lng: -74.08929 },
+  { lat: 4.63451, lng: -74.08944 },
+  { lat: 4.63486, lng: -74.0903 },
+  { lat: 4.63703, lng: -74.09199 },
+  { lat: 4.63757, lng: -74.09152 },
+  { lat: 4.63801, lng: -74.09105 },
+  { lat: 4.63801, lng: -74.09103 },
+  { lat: 4.63809, lng: -74.09086 },
+  { lat: 4.6381, lng: -74.09086 },
+  { lat: 4.63863, lng: -74.09056 },
+  { lat: 4.63881, lng: -74.09013 },
+  { lat: 4.63923, lng: -74.0896 },
+  { lat: 4.63926, lng: -74.08886 },
+  { lat: 4.63923, lng: -74.08881 },
+  { lat: 4.6402, lng: -74.08865 },
+  { lat: 4.640729, lng: -74.088197 },
+  { lat: 4.641072, lng: -74.087885 },
+  { lat: 4.641585, lng: -74.08737 },
+  { lat: 4.642088, lng: -74.086941 },
+  { lat: 4.642548, lng: -74.086555 },
+  { lat: 4.642847, lng: -74.086351 },
+  { lat: 4.643136, lng: -74.086094 },
+  { lat: 4.643585, lng: -74.08575 },
+  { lat: 4.644034, lng: -74.085267 },
+  { lat: 4.644291, lng: -74.084828 },
+  { lat: 4.644719, lng: -74.084452 },
+  { lat: 4.644879, lng: -74.084034 },
+  { lat: 4.644601, lng: -74.083626 },
+  { lat: 4.644227, lng: -74.083111 }
+  
+];
+let markers = [];
+let map;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 15.5,
+    center: { lat: 4.63986, lng: -74.08849 },
+  });
+}
+
+function drop() {
+  clearMarkers();
+	markers.push(
+      new google.maps.Marker({
+        position: { lat: 4.63373, lng: -74.08957 },
+        map,
+        animation: google.maps.Animation.DROP,
+		icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+      })
+    );
+  for (let i = 0; i < neighborhoods.length; i++) {
+    addMarkerWithTimeout(neighborhoods[i], i * 200);
+  }
+}
+
+function addMarkerWithTimeout(position, timeout) {
+  window.setTimeout(() => {
+    markers.push(
+      new google.maps.Marker({
+        position: position,
+        map,
+        animation: google.maps.Animation.DROP,
+		icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+      })
+    );
+  }, timeout);
+}
+
+function clearMarkers() {
+  for (let i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+  }
+  markers = [];
+}
+    </script>
+  </head>
+  <body>
+    <h3>Pruebas de alcance con Dragino</h3>
+    <!--The div element for the map -->
+	 <button id="drop" onclick="drop()">Drop Markers</button>
+    <div id="map"></div>
+  </body>
+</html>

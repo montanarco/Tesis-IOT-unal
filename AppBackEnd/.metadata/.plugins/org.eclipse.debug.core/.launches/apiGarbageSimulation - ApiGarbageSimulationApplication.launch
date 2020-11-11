@@ -9,6 +9,7 @@
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.example.apiGarbageSimulation.ApiGarbageSimulationApplication"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="apiGarbageSimulation"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.springframework.ide.eclipse.boot.launch.BootMavenSourcePathProvider"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djavax.net.ssl.trustStore=E:/cacerts&#13;&#10;-Djavax.net.ssl.keyStorePassword=changeit"/>
 <stringAttribute key="process_factory_id" value="org.springframework.ide.eclipse.boot.launch.process.BootProcessFactory"/>
 <booleanAttribute key="spring.boot.dash.hidden" value="false"/>
 <booleanAttribute key="spring.boot.debug.enable" value="false"/>

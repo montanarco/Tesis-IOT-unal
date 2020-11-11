@@ -9,6 +9,7 @@ import { DatePipe } from '@angular/common';
 import { IKmeansResult } from 'src/app/models/IDailyOperation';
 import * as moment from 'moment';
 import { CustomMessage } from '../CustomMessage';
+import { RoutingService } from 'src/app/services/routing-service';
 @Component({
   selector: 'app-simulation',
   templateUrl: './simulation.component.html',
@@ -53,7 +54,8 @@ export class SimulationComponent implements OnInit {
     private dailyOperationService: DailyOperationService,
     private clusterService: ClusterService,
     private datepipe: DatePipe,
-    private messajeService: CustomMessage) {
+    private messajeService: CustomMessage,
+    private routingService: RoutingService) {
 
   }
 
@@ -116,7 +118,7 @@ export class SimulationComponent implements OnInit {
 
   generateContainer(filled: boolean) {
     if (filled && this.txtDate == null){
-      this.messajeService.showWarn("Fecha Invalida", "profavor seleccione una fecha para simular");
+      this.messajeService.showWarn("Fecha Invalida", "por favor seleccione una fecha para simular");
       return;
     }
 
@@ -210,6 +212,17 @@ export class SimulationComponent implements OnInit {
         return this.icons.whiteDumpster;
     }
 
+  }
+
+  callRouting(){
+    if(!this.txtDate){
+      this.messajeService.showWarn("Fecha Invalida", "por favor seleccione una fecha valida para enrrutar");
+      return;
+    }
+    this.routingService.routingOperation(this.txtDate).subscribe(
+      response => {
+        console.log(response);
+      });
   }
 
 }

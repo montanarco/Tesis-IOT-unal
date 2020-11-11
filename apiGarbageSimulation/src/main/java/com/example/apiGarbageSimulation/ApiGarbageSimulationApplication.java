@@ -40,6 +40,8 @@ public class ApiGarbageSimulationApplication {
 				.antMatchers(HttpMethod.OPTIONS, 	"/api/containers/fetchLastMeasures/").permitAll()
 				.antMatchers(HttpMethod.GET, 		"/api/routing/operation/*").permitAll()
 				.antMatchers(HttpMethod.OPTIONS, 	"/api/routing/operation/*").permitAll()
+				.antMatchers(HttpMethod.GET, 		"/api/routing/calculate/*").permitAll()
+				.antMatchers(HttpMethod.OPTIONS, 	"/api/routing/calculate/*").permitAll()
 				.anyRequest().authenticated();
 		}
 	}

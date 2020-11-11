@@ -2,6 +2,8 @@ package com.example.apiGarbageSimulation.constants;
 
 public class ResponseApiTest {
 	
+	public static final String BEARER_KEY = "5b3ce3597851110001cf6248ea54f5c699124f6e8a6be67356db7a21";
+	
 	public static final String RESPONSE = "{\r\n" + 
 			"    \"code\": 0,\r\n" + 
 			"    \"summary\": {\r\n" + 
@@ -914,7 +916,6 @@ public class ResponseApiTest {
 			"            ]\r\n" + 
 			"        }\r\n" + 
 			"    ]\r\n" + 
-			"}\r\n" + 
-			"";
+			"}\r\n" ;
 
 }

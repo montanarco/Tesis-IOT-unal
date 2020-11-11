@@ -5,7 +5,7 @@ import {Component} from '@angular/core';
     template: `
         <div class="footer">
             <div class="card clearfix">
-                <span class="footer-text-left">Este Software Tesis Maestria Univerisdad Nacional - Netvolution S.A.S</span>
+                <span class="footer-text-left">Este Software Tesis Maestria Univerisdad Nacional</span>
                 <span class="footer-text-right">
                     <span class="material-icons ui-icon-copyright"></span>
                     <span>All Rights Reserved</span>

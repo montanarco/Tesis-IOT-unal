@@ -1,0 +1,11 @@
+package com.example.apiGarbageSimulation.services;
+
+import java.util.Date;
+
+public interface IRoutingService {
+	
+	void RouteVehicles (Date date);
+	
+	void mapJsonRoutes(Date date);
+
+}

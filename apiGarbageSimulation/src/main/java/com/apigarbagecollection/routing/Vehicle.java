@@ -5,7 +5,6 @@ public class Vehicle {
 	private Integer id;
 	private String profile;
 	private Float [] start;
-	private Float [] end;
 	private Integer [] capacity;
 	
 	public Vehicle() {
@@ -29,12 +28,6 @@ public class Vehicle {
 	}
 	public void setStart(Float[] start) {
 		this.start = start;
-	}
-	public Float[] getEnd() {
-		return end;
-	}
-	public void setEnd(Float[] end) {
-		this.end = end;
 	}
 	public Integer[] getCapacity() {
 		return capacity;

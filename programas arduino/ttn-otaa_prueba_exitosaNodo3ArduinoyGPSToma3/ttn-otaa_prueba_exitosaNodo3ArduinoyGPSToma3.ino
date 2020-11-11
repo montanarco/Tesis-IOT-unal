@@ -55,8 +55,6 @@ void os_getDevEui (u1_t* buf) { memcpy_P(buf, DEVEUI, 8);}
 static const u1_t PROGMEM APPKEY[16] = { 0x34, 0x45, 0xEE, 0x44, 0xEC, 0xDA, 0x7B, 0x16, 0x87, 0x50, 0xE0, 0xA6, 0x46, 0x56, 0x62, 0x56 };//msb
 void os_getDevKey (u1_t* buf) {  memcpy_P(buf, APPKEY, 16);}
 
-
-//static uint8_t mydata[] = "que se dice Roita?";
 static byte payload[8];
 static osjob_t sendjob;
 
@@ -171,27 +169,6 @@ void do_send(osjob_t* j){
      if (LMIC.opmode & OP_TXRXPEND) {
         Serial.println(F("OP_TXRXPEND, not sending"));
     } else {   
-
-       /*digitalWrite(trigPin, LOW);
-       delayMicroseconds(2);
-       digitalWrite(trigPin, HIGH);   // genera el pulso de triger por 10ms
-       delayMicroseconds(10);
-       digitalWrite(trigPin, LOW);
-
-       duration = pulseIn(echoPin, HIGH);
-     
-       distance = (duration/2) / 29;            // calcula la distancia en centimetros
-  
-       if (distance >= 500 || distance <= 0){  // si la distancia es mayor a 500cm o menor a 0cm 
-           Serial.println("---");                  // no mide nada
-            distance =  500;
-       }
-       else {
-       Serial.print(distance);           // envia el valor de la distancia por el puerto serial
-       Serial.println("cm");              // le coloca a la distancia los centimetros "cm"
-       digitalWrite(13, 0);               // en bajo el pin 13
-       digitalWrite(4, 1); 
-       }*/
        distance =  50;
        uint32_t distancia= distance * 10;
        

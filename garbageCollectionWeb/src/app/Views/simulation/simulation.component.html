@@ -16,7 +16,9 @@
         <div class="ui-g-12">
                 <input type="button" pButton (click)="clusterStreets()" value="clusterStreets" class="ui-button-success" *ngIf="allowCluster">
         </div>
-        
+        <div class="ui-g-12">
+            <input type="button" pButton (click)="callRouting()" value="Route vehicles" class="ui-button-info" *ngIf="allowCluster">
+        </div>
     </div>
     <div class="ui-g-12">
         <div #map style="width:100%;height:600px"></div>

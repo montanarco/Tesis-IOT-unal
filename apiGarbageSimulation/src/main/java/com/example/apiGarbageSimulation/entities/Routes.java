@@ -1,18 +1,85 @@
 package com.example.apiGarbageSimulation.entities;
 
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.List;
 
-public class Routes {
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
+
+
+@Entity
+@Table(name = "routes")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Routes.findAll", query = "SELECT r FROM Route r")})
+public class Routes implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "routesIdSeq")
+    @SequenceGenerator(name = "routesIdSeq")
+	private Integer id;
+	
+	@Column(name = "vehicle")
 	private Integer vehicle;
+	@Column(name = "cost")
 	private Integer cost;
+	@Column(name = "delivery")
 	private Integer [] delivery;
+	@Column(name = "amount")
 	private Integer [] amount;
+	@Column(name = "pickup")
 	private Integer [] pickup;
+	@Column(name = "service")
 	private Integer service;
+	@Column(name = "duration")
 	private Integer duration;
+	@Column(name = "waiting_time")
 	private Integer waiting_time;
-	private List<Step> steps;
+
+	@OneToMany(mappedBy = "idRoute")
+	private Collection<Step> steps;
+	
+	@Column(name = "created_on")
+    //@Temporal(TemporalType.TIMESTAMP)
+	private Timestamp created_on;
+	
+	
+	
+	public Timestamp getCreated_on() {
+		return created_on;
+	}
+	public void setCreated_on(Timestamp created_on) {
+		this.created_on = created_on;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public Integer getVehicle() {
 		return vehicle;
 	}
@@ -61,11 +128,18 @@ public class Routes {
 	public void setWaiting_time(Integer waiting_time) {
 		this.waiting_time = waiting_time;
 	}
-	public List<Step> getSteps() {
+	public Collection<Step> getSteps() {
 		return steps;
 	}
 	public void setSteps(List<Step> steps) {
 		this.steps = steps;
+	}
+	public void validateID() {
+		for (Step st: this.steps) {
+			if (st.getId()==null)
+				st.setId(0);
+		}
+		
 	}
 
 }

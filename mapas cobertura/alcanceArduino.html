@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Alcance LoRa</title>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAn9ddhN7ZuvAGhxKCn-3qeQogWEGK6woE&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      /* Set the size of the div element that contains the map */
+      #map {
+        height: 650px;
+        /* The height is 400 pixels */
+        width: 100%;
+        /* The width is the width of the web page */
+      }
+    </style>
+    <script>
+	// If you're adding a number of markers, you may want to drop them on the map
+// consecutively rather than all at once. This example shows how to use
+// window.setTimeout() to space your markers' animation.
+const neighborhoods = [
+  { lat: 4.63064, lng: -74.08702 },
+  { lat: 4.63073, lng: -74.08713 },
+  { lat: 4.63055, lng: -74.08766 },
+  { lat: 4.63054, lng: -74.08745 },
+  { lat: 4.63017, lng: -74.08796 },
+  { lat: 4.629759, lng: -74.088629 },
+  { lat: 4.629348, lng: -74.089271 },
+  { lat: 4.628856, lng: -74.090150 },
+  { lat: 4.628452, lng: -74.090731 },
+  
+];
+let markers = [];
+let map;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 18,
+    center: { lat: 4.6313503, lng: -74.0868937 },
+  });
+}
+
+function drop() {
+  clearMarkers();
+	markers.push(
+      new google.maps.Marker({
+        position: { lat: 4.6305, lng: -74.08691 },
+        map,
+        animation: google.maps.Animation.DROP,
+		icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+      })
+    );
+  for (let i = 0; i < neighborhoods.length; i++) {
+    addMarkerWithTimeout(neighborhoods[i], i * 200);
+  }
+}
+
+function addMarkerWithTimeout(position, timeout) {
+  window.setTimeout(() => {
+    markers.push(
+      new google.maps.Marker({
+        position: position,
+        map,
+        animation: google.maps.Animation.DROP,
+		icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+      })
+    );
+  }, timeout);
+}
+
+function clearMarkers() {
+  for (let i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+  }
+  markers = [];
+}
+    </script>
+  </head>
+  <body>
+    <h3>Pruebas de alcance con Arduino</h3>
+    <!--The div element for the map -->
+	 <button id="drop" onclick="drop()">Drop Markers</button>
+    <div id="map"></div>
+  </body>
+</html>

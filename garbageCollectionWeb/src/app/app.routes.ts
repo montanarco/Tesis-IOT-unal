@@ -7,6 +7,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import { LoginComponent } from './Views/login/login.component';
 import { HomeComponent } from './Views/Pages/home/home.component';
+import { TestingComponent } from './Views/testing/testing.component';
 
 
 
@@ -28,6 +29,11 @@ export const routes: Routes = [
        children: [
            {path: '', component:  MeasuresComponent}
        ]
+    },
+    { path: 'testing', component: DashBoardComponent ,
+        children: [
+        {path: '', component:  TestingComponent}
+        ]
     },
     // {
     //     path: 'Analitica', component: DashBoardComponent, canActivate: [AuthGuard],

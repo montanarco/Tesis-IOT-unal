@@ -1,0 +1,4 @@
+-Djavax.net.ssl.trustStore=D:/cacerts
+-Djavax.net.ssl.keyStorePassword=changeit
+-Djavax.net.ssl.keyStore=D:/cacerts
+-Djavax.net.ssl.keyStorePassword=changeit

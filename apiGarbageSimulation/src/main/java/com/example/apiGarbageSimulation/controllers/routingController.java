@@ -20,13 +20,12 @@ public class routingController {
 
 	@Autowired
 	IRoutingService routingService;
-
-	@RequestMapping(value = "/operation/{strDate}", method = RequestMethod.GET, produces = "application/json")
-	public ResponseEntity clusterStreets(@PathVariable String strDate) throws ParseException {
+	
+	@RequestMapping(value = "/calculate/{strDate}", method = RequestMethod.GET, produces = "application/json")
+	public ResponseEntity mappingJsonResponse(@PathVariable String strDate) throws ParseException {
 		Date date = new SimpleDateFormat("dd-MM-yyyy").parse(strDate);
-		RoutingReq requieredRouting = routingService.generateContainersVehicles(date);
-		System.out.println(requieredRouting);
-		return ResponseEntity.ok(requieredRouting);
+		routingService.RouteVehicles(date);
+		return ResponseEntity.ok("{\"codigo\":\"200\",\"mensaje\":\"las rutas se generaron correctamente\"}");
 	}
 
 }
