@@ -16,4 +16,10 @@ import { Observable } from 'rxjs';
       const uri = this.apiURL + '/calculate/' + date;
       return this.httpClient.get<JSON>(uri);
     }
+
+
+    getVehicleRoutes(): Observable<JSON> {
+      const uri = this.apiURL + '/vehicles/05-11-2020';
+      return this.httpClient.get<JSON>(uri);
+    }
   }

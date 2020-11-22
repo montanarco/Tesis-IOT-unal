@@ -43,6 +43,9 @@ export class SimulationComponent implements OnInit {
     },
     yellowDumpster: {
       icon: this.iconBase + 'baseline_delete_yellow.png'
+    },
+    purpleDumpster: {
+      icon: this.iconBase + 'baseline_delete_purple.png'
     }
   };
   features: any[];
@@ -201,9 +204,9 @@ export class SimulationComponent implements OnInit {
       case "Full":
         return this.icons.redDumpster;
       case "High":
-        return this.icons.orangeDumpster;
-      case "Medium":
         return this.icons.yellowDumpster;
+      case "Medium":
+        return this.icons.purpleDumpster;
       case "Low":
         return this.icons.greenDumpster;
       case "Empty":
@@ -222,6 +225,8 @@ export class SimulationComponent implements OnInit {
     this.routingService.routingOperation(this.txtDate).subscribe(
       response => {
         console.log(response);
+        this.messajeService.showWarn(response['codigo'], response['mensaje']);
+        alert(response['codigo'] + response['mensaje']);
       });
   }
 

@@ -9,6 +9,7 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,12 +23,21 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.NamedNativeQuery;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 @Table(name = "routes")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Routes.findAll", query = "SELECT r FROM Route r")})
+@NamedNativeQuery(
+		name = "Routes.findByCreatedOnBetween",
+		query="select * from Routes r where r.created_on between ? and ? ",
+		resultClass= Routes.class
+		)
 public class Routes implements Serializable {
 	
 	/**
@@ -38,8 +48,8 @@ public class Routes implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "routesIdSeq")
-    @SequenceGenerator(name = "routesIdSeq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "routesSequence")
+	@SequenceGenerator(name="routesSequence", sequenceName="routes_sequence", allocationSize=1)
 	private Integer id;
 	
 	@Column(name = "vehicle")
@@ -59,20 +69,22 @@ public class Routes implements Serializable {
 	@Column(name = "waiting_time")
 	private Integer waiting_time;
 
-	@OneToMany(mappedBy = "idRoute")
+	@OneToMany(mappedBy = "idRoute", fetch = FetchType.LAZY)
+	@JsonManagedReference
 	private Collection<Step> steps;
 	
 	@Column(name = "created_on")
     //@Temporal(TemporalType.TIMESTAMP)
-	private Timestamp created_on;
+	private Timestamp createdOn;
 	
 	
 	
-	public Timestamp getCreated_on() {
-		return created_on;
+	
+	public Timestamp getCreatedOn() {
+		return createdOn;
 	}
-	public void setCreated_on(Timestamp created_on) {
-		this.created_on = created_on;
+	public void setCreatedOn(Timestamp createdOn) {
+		this.createdOn = createdOn;
 	}
 	public Integer getId() {
 		return id;

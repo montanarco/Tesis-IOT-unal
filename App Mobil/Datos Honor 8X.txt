@@ -1,0 +1,8 @@
+Nombre del modelo de teléfono: honor 8X Miguel
+numero del Modelo: JSN-L23
+Producto IMEI o MEID: 8600600402274352   ----  860060040298369
+Número de serie: ESU4C18B09000126
+ID del producto: 55056409
+Nombre del modelo de teléfono e IMEI / MEID:
+
+adb connect 127.0.0.1

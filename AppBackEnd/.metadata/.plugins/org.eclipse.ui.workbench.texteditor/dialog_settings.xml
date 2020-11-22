@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="clusterize" key="selection"/>
+		<item value="getVehicleRouting" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="getVehicleRouting"/>
 			<item value="clusterize"/>
 			<item value="CLUSTER"/>
 			<item value="generateLevels"/>
@@ -22,7 +23,6 @@
 			<item value="jooq-postgis-spatial"/>
 			<item value="geomet"/>
 			<item value="geometr"/>
-			<item value="connected"/>
 		</list>
 		<list key="replacehistory">
 		</list>

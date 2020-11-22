@@ -42,6 +42,10 @@ public class ApiGarbageSimulationApplication {
 				.antMatchers(HttpMethod.OPTIONS, 	"/api/routing/operation/*").permitAll()
 				.antMatchers(HttpMethod.GET, 		"/api/routing/calculate/*").permitAll()
 				.antMatchers(HttpMethod.OPTIONS, 	"/api/routing/calculate/*").permitAll()
+				.antMatchers(HttpMethod.GET, 		"/api/routing/vehicles*").permitAll()
+				.antMatchers(HttpMethod.OPTIONS, 	"/api/routing/vehicles*").permitAll()
+				.antMatchers(HttpMethod.GET, 		"/api/routing/vehicles/*").permitAll()
+				.antMatchers(HttpMethod.OPTIONS, 	"/api/routing/vehicles/*").permitAll()
 				.anyRequest().authenticated();
 		}
 	}

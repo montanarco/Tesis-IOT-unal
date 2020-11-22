@@ -13,10 +13,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import com.example.apiGarbageSimulation.entities.Routes;
@@ -35,14 +37,15 @@ public class Step implements Serializable{
     @Basic(optional = false)
     @NotNull
 	@Column(name = "id_step") 
-	@GeneratedValue(strategy = GenerationType.SEQUENCE) //, generator = "stepIdStepSeq"
-    //@SequenceGenerator(name = "stepIdStepSeq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "stepSequence")
+	@SequenceGenerator(name="stepSequence", sequenceName="step_sequence", allocationSize=1)
 	private Integer idStep;
 	
     @Column(name = "type")
 	private String type;
     @JoinColumn(name = "id_route", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
+    @JsonBackReference
 	private Routes idRoute;
     @Column(name = "location")
 	private Float [] location;

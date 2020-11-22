@@ -33,6 +33,9 @@ export class MeasuresComponent implements OnInit, AfterViewInit {
     },
     yellowDumpster: {
       icon: this.iconBase + 'baseline_delete_yellow.png'
+    },
+    purpleDumpster: {
+      icon: this.iconBase + 'baseline_delete_purple.png'
     }
   };
 
@@ -123,21 +126,22 @@ export class MeasuresComponent implements OnInit, AfterViewInit {
 
   }
 
-priorityIcon(priority: Priority) {
-  switch (priority.priorityName) {
-    case "Full":
-      return this.icons.redDumpster;
-    case "High":
-      return this.icons.orangeDumpster;
-    case "Medium":
-      return this.icons.yellowDumpster;
-    case "Low":
-      return this.icons.greenDumpster;
-    case "Empty":
-      return this.icons.blackDumpster;
-    default:
-      return this.icons.whiteDumpster;
+  priorityIcon(priority: Priority) {
+    switch (priority.priorityName) {
+      case "Full":
+        return this.icons.redDumpster;
+      case "High":
+        return this.icons.yellowDumpster;
+      case "Medium":
+        return this.icons.purpleDumpster;
+      case "Low":
+        return this.icons.greenDumpster;
+      case "Empty":
+        return this.icons.blackDumpster;
+      default:
+        return this.icons.whiteDumpster;
+    }
+
   }
-}
 
 }

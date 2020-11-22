@@ -13,5 +13,12 @@ export class TestingComponent implements OnInit {
   ngOnInit() {
   }
 
+  callRoutingVehicles(){
+    this.routingService.getVehicleRoutes().subscribe(
+      response =>  console.log(response),
+      error=> alert("ocurrio un error generando las rutas")
+      );
+  }
 
 }
+
