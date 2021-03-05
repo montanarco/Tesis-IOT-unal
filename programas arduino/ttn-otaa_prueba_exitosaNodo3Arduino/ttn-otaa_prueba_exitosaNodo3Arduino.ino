@@ -61,6 +61,10 @@ static osjob_t sendjob;
 // cycle limitations).
 const unsigned TX_INTERVAL = 60;
 
+long duracion, distancia;   
+float latitude, longitude;
+int Ptrig, Pecho, respEcho;
+
 // Pin mapping
 const lmic_pinmap lmic_pins = {
     .nss = 10,
@@ -145,23 +149,72 @@ void do_send(osjob_t* j){
         Serial.println(F("OP_TXRXPEND, not sending"));
     } else {
         // Prepare upstream data transmission at the next possible time.
-        int16_t distance=500;
-        byte disLow = lowByte(distance);
-        byte disHigh = highByte(distance);
+        // setup distance sound sensor
+        digitalWrite(Ptrig, LOW);
+        delayMicroseconds(2);
+        digitalWrite(Ptrig, HIGH);   // genera el pulso de triger por 10ms
+        delayMicroseconds(10);
+        digitalWrite(Ptrig, LOW);
 
-        payload[0] = disLow;
-        payload[1] = disHigh;
+        duracion = pulseIn(Pecho, HIGH);
+     
+        distancia = (duracion/2) / 29;            // calcula la distancia en centimetros
+  
+        if (distancia >= 500 || distancia <= 0){  // si la distancia es mayor a 500cm o menor a 0cm 
+            Serial.println("---");                  // no mide nada
+        }
+        else {
+        Serial.print(distancia);           // envia el valor de la distancia por el puerto serial
+        Serial.println("cm");              // le coloca a la distancia los centimetros "cm"
+        digitalWrite(13, 0);               // en bajo el pin 13
+        digitalWrite(4, 1); 
+
         
-        LMIC_setTxData2(1, payload, sizeof(payload)-1, 0);
+        uint32_t distance=distancia * 10;
+
+        Serial.println("distance: " + String(distance));
+
+        latitude = 4.64580;
+        longitude = -74.09183; 
+
+        Serial.println("Latitud/Longitud: " + String(latitude)+" , " + String(longitude));
+
+        int32_t lat = latitude * 100000;
+        int32_t lon = longitude * 100000;
+
+        Serial.println("Latitud/Longitud: " + String(lat)+" , " + String(lon));
+
+        byte payload[8];
+
+        payload[0] = lat;
+        payload[1] = lat >> 8;
+        payload[2] = lat >> 16;
+        
+        payload[3] = lon;
+        payload[4] = lon >> 8;
+        payload[5] = lon >> 16;
+        
+        payload[6] = highByte(distance); 
+        payload[7] = lowByte(distance);
+        
+        LMIC_setTxData2(1, payload, sizeof(payload), 0);
         //LMIC_setTxData2(1, mydata, sizeof(mydata)-1, 0);
         
         Serial.println(F("Packet queued"));
+        }
     }
+    delay(3000); 
     // Next TX is scheduled after TX_COMPLETE event.
 }
 
 void setup() {
-    Serial.begin(9600);
+    Pecho = 6;           
+  Ptrig = 7;
+  Serial.begin(9600);      // inicializa el puerto seria a 9600 baudios
+  pinMode(Pecho, INPUT);     // define el pin 6 como entrada (echo)
+  pinMode(Ptrig, OUTPUT);    // define el pin 7 como salida  (triger)
+  pinMode(13, 1);            // Define el pin 13 como salida
+  pinMode(4, 1);
     Serial.println(F("Starting"));
 
     #ifdef VCC_ENABLE
