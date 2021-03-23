@@ -404,7 +404,7 @@
           <tags>removeOnHide</tags>
         </children>
         <children xsi:type="basic:Part" xmi:id="_Cp6WcFn_EeueZr2aezyswQ" elementId="org.eclipse.e4.ui.compatibility.editor" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityEditor" label="App.java" iconURI="platform:/plugin/org.eclipse.jdt.ui/icons/full/obj16/jcu_obj.png" closeable="true">
-          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;App.java&quot; partName=&quot;App.java&quot; title=&quot;App.java&quot; tooltip=&quot;mqtt/src/main/java/org/thethingsnetwork/samples/mqtt/App.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/mqtt/src/main/java/org/thethingsnetwork/samples/mqtt/App.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;5180&quot; selectionTopPixel=&quot;302&quot;/>&#xD;&#xA;&lt;/editor>"/>
+          <persistedState key="memento" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;&#xA;&lt;editor id=&quot;org.eclipse.jdt.ui.CompilationUnitEditor&quot; name=&quot;App.java&quot; partName=&quot;App.java&quot; title=&quot;App.java&quot; tooltip=&quot;mqtt/src/main/java/org/thethingsnetwork/samples/mqtt/App.java&quot;>&#xD;&#xA;&lt;input factoryID=&quot;org.eclipse.ui.part.FileEditorInputFactory&quot; path=&quot;/mqtt/src/main/java/org/thethingsnetwork/samples/mqtt/App.java&quot;/>&#xD;&#xA;&lt;editorState selectionHorizontalPixel=&quot;0&quot; selectionLength=&quot;0&quot; selectionOffset=&quot;2612&quot; selectionTopPixel=&quot;302&quot;/>&#xD;&#xA;&lt;/editor>"/>
           <tags>Editor</tags>
           <tags>org.eclipse.jdt.ui.CompilationUnitEditor</tags>
           <tags>removeOnHide</tags>
@@ -919,7 +919,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_Gyvs4jf5EeuNioWBwWeIBg" elementId="org.eclipse.ui.workbench.file">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_Ux2C4G9NEeue0ehainQhVQ" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_HUZodzf5EeuNioWBwWeIBg"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_10RxIIpsEeujz7y0nO6fag" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_HUZodzf5EeuNioWBwWeIBg"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_Gy4PxDf5EeuNioWBwWeIBg" elementId="additions" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -955,7 +955,7 @@
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_G0G-1jf5EeuNioWBwWeIBg" elementId="org.eclipse.ui.workbench.navigate">
         <tags>Draggable</tags>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_Ux5GMW9NEeue0ehainQhVQ" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_HT3dAzf5EeuNioWBwWeIBg"/>
+        <children xsi:type="menu:HandledToolItem" xmi:id="_10WCkIpsEeujz7y0nO6fag" elementId="org.eclipse.ui.window.pinEditor" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" type="Check" command="_HT3dAzf5EeuNioWBwWeIBg"/>
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_G0OTlzf5EeuNioWBwWeIBg" elementId="group.editor" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -1252,9 +1252,7 @@
     <bindings xmi:id="_G4K_ejf5EeuNioWBwWeIBg" keySequence="ALT+SHIFT+D H" command="_HVnJYjf5EeuNioWBwWeIBg"/>
     <bindings xmi:id="_G4K_ezf5EeuNioWBwWeIBg" keySequence="ALT+SHIFT+D R" command="_HVX42Tf5EeuNioWBwWeIBg"/>
     <bindings xmi:id="_G4K_fDf5EeuNioWBwWeIBg" keySequence="ALT+SHIFT+D W" command="_HVX43Tf5EeuNioWBwWeIBg"/>
-    <bindings xmi:id="_G4K_fTf5EeuNioWBwWeIBg" keySequence="CTRL+SHIFT+T" command="_HQfY5Df5EeuNioWBwWeIBg">
-      <tags>deleted</tags>
-    </bindings>
+    <bindings xmi:id="_G4K_fTf5EeuNioWBwWeIBg" keySequence="CTRL+SHIFT+T" command="_HQfY5Df5EeuNioWBwWeIBg"/>
     <bindings xmi:id="_G4K_fjf5EeuNioWBwWeIBg" keySequence="ALT+SHIFT+X W" command="_HVcKRzf5EeuNioWBwWeIBg"/>
     <bindings xmi:id="_G4K_fzf5EeuNioWBwWeIBg" keySequence="ALT+SHIFT+X H" command="_HVnJeTf5EeuNioWBwWeIBg"/>
     <bindings xmi:id="_G4K_gDf5EeuNioWBwWeIBg" keySequence="ALT+SHIFT+X R" command="_HVnJczf5EeuNioWBwWeIBg"/>
